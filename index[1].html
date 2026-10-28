@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090b25">
+<title>Aula Arcoíris Cósmica | Aprende jugando</title>
+<style>
+:root{--bg:#080a22;--panel:rgba(18,22,59,.88);--panel2:#171c49;--ink:#f4f5ff;--muted:#b7bee9;--cyan:#58f5ff;--pink:#ff63d8;--violet:#a68bff;--lime:#a7ffb5;--gold:#ffd66b}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;background:radial-gradient(ellipse at 20% 0%,#25205f 0,transparent 35%),radial-gradient(ellipse at 90% 30%,#172f64 0,transparent 30%),var(--bg);overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background-image:radial-gradient(2px 2px at 20px 30px,#fff 45%,transparent 55%),radial-gradient(1px 1px at 90px 80px,#9cefff 45%,transparent 55%),radial-gradient(1.5px 1.5px at 150px 130px,#d9baff 45%,transparent 55%);background-size:190px 170px,230px 220px,290px 270px;animation:starDrift 55s linear infinite;opacity:.65}
+@keyframes starDrift{to{background-position:190px 170px, -230px 220px,290px -270px}}
+@keyframes pulse{0%,100%{box-shadow:0 0 12px #58f5ff20, inset 0 0 12px #58f5ff08}50%{box-shadow:0 0 28px #58f5ff35,inset 0 0 18px #58f5ff12}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@keyframes hue{to{filter:hue-rotate(360deg)}}
+header{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:20px clamp(16px,4vw,52px);border-bottom:1px solid #6e7dd52b;background:#080a22a8;backdrop-filter:blur(16px);position:sticky;top:0;z-index:10}
+.brand{display:flex;align-items:center;gap:12px;font-weight:950;letter-spacing:-.04em}.brand-icon{width:44px;height:44px;display:grid;place-items:center;border-radius:14px;background:linear-gradient(135deg,#58f5ff,#a68bff,#ff63d8);color:#090b25;font-size:1.45rem;box-shadow:0 0 24px #8e7bff55}
+nav{display:flex;gap:8px;flex-wrap:wrap}nav a,.sound-toggle{color:var(--ink);text-decoration:none;border:1px solid #8c9bff35;background:#ffffff08;padding:9px 13px;border-radius:12px;font-weight:750;font-size:.9rem;cursor:pointer}nav a:hover,.sound-toggle:hover{border-color:var(--cyan);background:#58f5ff10}
+main{max-width:1180px;margin:auto;padding:28px 20px 56px}
+.hero{position:relative;overflow:hidden;border:1px solid #7c8cff55;border-radius:30px;padding:clamp(26px,5vw,58px);background:linear-gradient(115deg,#15183eeF,#101633eF 58%,#25164beF);animation:pulse 7s ease-in-out infinite}
+.hero:after{content:"🪐";position:absolute;right:7%;top:12%;font-size:clamp(72px,13vw,145px);filter:drop-shadow(0 0 24px #a68bff8a);animation:float 5s ease-in-out infinite}
+.kicker{display:inline-flex;align-items:center;gap:8px;border:1px solid #58f5ff55;background:#58f5ff10;color:var(--cyan);border-radius:99px;padding:7px 12px;font-size:.76rem;font-weight:900;letter-spacing:.11em;text-transform:uppercase}
+h1{font-size:clamp(2.5rem,7vw,5.2rem);line-height:.98;letter-spacing:-.07em;max-width:780px;margin:20px 0}
+.chromatic{background:linear-gradient(90deg,var(--cyan),var(--violet),var(--pink),var(--gold),var(--cyan));background-size:300%;color:transparent;-webkit-background-clip:text;background-clip:text;animation:gradientMove 8s linear infinite}
+@keyframes gradientMove{to{background-position:300% center}}
+.hero p{color:var(--muted);line-height:1.7;font-size:1.08rem;max-width:650px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}.btn{border:1px solid transparent;border-radius:13px;padding:12px 17px;font:inherit;font-weight:900;cursor:pointer;transition:transform .2s,filter .2s}.btn:hover{transform:translateY(-2px);filter:brightness(1.1)}.primary{color:#070b21;background:linear-gradient(100deg,var(--cyan),#9effe1)}.secondary{color:var(--ink);border-color:#8c9bff55;background:#ffffff0b}.pink{background:linear-gradient(100deg,#ff63d8,#a68bff);color:#110b2d}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;max-width:820px;margin-top:26px}
+.stat{border:1px solid #8c9bff32;background:#ffffff08;border-radius:16px;padding:13px 15px}.stat small{display:block;color:#aab4e6;font-size:.7rem;font-weight:850;letter-spacing:.07em;margin-bottom:6px}.stat strong{font-size:1.45rem}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:14px;margin:40px 0 17px}.section-head h2{margin:0;font-size:clamp(1.6rem,4vw,2.3rem);letter-spacing:-.045em}.section-head p{margin:6px 0 0;color:var(--muted)}
+.subjects{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.subject{position:relative;overflow:hidden;border:1px solid #8c9bff38;border-radius:22px;padding:21px;background:linear-gradient(145deg,#171b45eF,#10132feF);min-height:218px;transition:transform .25s,border-color .25s;}.subject:after{content:"";position:absolute;width:130px;height:130px;right:-70px;bottom:-80px;border-radius:50%;background:var(--glow);filter:blur(5px);opacity:.23}.subject:hover{transform:translateY(-6px);border-color:var(--glow)}.emoji{display:grid;place-items:center;width:58px;height:58px;border-radius:18px;background:color-mix(in srgb,var(--glow) 18%,transparent);font-size:2rem;margin-bottom:14px;animation:float 5s ease-in-out infinite}.subject h3{margin:0 0 7px}.subject p{font-size:.9rem;line-height:1.55;color:var(--muted);min-height:43px;margin:0 0 15px}.subject button{position:relative;z-index:1;background:transparent;border:0;padding:0;color:var(--glow);font-weight:900;cursor:pointer}
+.columns{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(280px,.7fr);gap:16px;margin-top:24px}.panel{border:1px solid #8c9bff38;border-radius:25px;background:linear-gradient(145deg,#15193feF,#10132feF);padding:clamp(19px,3vw,30px)}.panel h2{margin:0 0 8px;font-size:1.65rem;letter-spacing:-.04em}.sub{color:var(--muted);margin:0 0 20px;line-height:1.6}
+.quiz-top{display:flex;align-items:center;justify-content:space-between;gap:10px;color:var(--muted);font-size:.84rem;font-weight:850}.pill{padding:6px 10px;border:1px solid #8c9bff3a;border-radius:99px;background:#ffffff08}
+.progress{height:8px;border-radius:99px;background:#ffffff12;overflow:hidden;margin:15px 0}.progress span{height:100%;display:block;width:0;background:linear-gradient(90deg,var(--cyan),var(--violet),var(--pink));transition:width .3s}
+#question{font-size:1.28rem;font-weight:900;margin:18px 0}.answers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.answer{font:inherit;font-weight:800;text-align:left;color:var(--ink);background:#e8eaff;border:2px solid transparent;border-radius:13px;padding:12px;cursor:pointer}.answer:hover{border-color:var(--cyan)}.answer.correct{background:#c8ffe4;border-color:#36d99a}.answer.wrong{background:#ffd8ef;border-color:#ff63b5}.answer:disabled{cursor:default}
+#feedback{min-height:46px;color:var(--muted);line-height:1.5;font-weight:750;padding-top:12px}.quiz-controls{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.timer{display:flex;align-items:center;gap:8px;color:var(--gold);font-weight:950}.timer.warning{color:#ff8aab;animation:pulse .6s infinite}
+.side-stack{display:grid;gap:16px}.level-wrap{display:flex;gap:16px;align-items:center}.level-orb{flex:0 0 76px;height:76px;border-radius:50%;display:grid;place-items:center;font-size:2rem;border:2px solid var(--cyan);background:radial-gradient(circle,#58f5ff32,#a68bff12);box-shadow:0 0 26px #58f5ff25}.level-info{flex:1}.level-info strong{font-size:1.2rem}.level-info p{margin:5px 0;color:var(--muted);font-size:.88rem}.xp-track{height:8px;border-radius:99px;background:#ffffff15;margin-top:10px;overflow:hidden}.xp-track span{display:block;width:0;height:100%;background:linear-gradient(90deg,var(--cyan),var(--pink));transition:width .3s}
+.badges{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.badge-item{padding:12px 5px;text-align:center;border:1px solid #8c9bff30;border-radius:14px;background:#ffffff05;opacity:.35;filter:grayscale(1)}.badge-item.unlocked{opacity:1;filter:none;border-color:#ffd66b66;background:#ffd66b0d}.badge-item span{display:block;font-size:1.65rem;margin-bottom:5px}.badge-item small{font-size:.72rem;font-weight:800;color:var(--muted)}
+.leaderboard{display:grid;gap:9px}.leader-row{display:grid;grid-template-columns:30px 1fr auto;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;background:#ffffff08;border:1px solid #8c9bff20}.leader-row:first-child{border-color:#ffd66b66;background:#ffd66b0c}.rank{font-weight:950;color:var(--gold)}.leader-name{font-weight:800}.leader-points{font-weight:900;color:var(--cyan);font-variant-numeric:tabular-nums}.you-label{font-size:.7rem;color:var(--pink);margin-left:5px}
+footer{text-align:center;color:#8d98cb;padding:26px 15px 36px;font-size:.9rem}
+#toast{position:fixed;left:50%;bottom:20px;transform:translate(-50%,20px);opacity:0;pointer-events:none;z-index:20;background:#f4f5ff;color:#10132f;padding:12px 17px;border-radius:13px;font-weight:900;box-shadow:0 10px 35px #0007;transition:.25s;max-width:90vw;text-align:center}#toast.show{opacity:1;transform:translate(-50%,0)}
+.confetti{position:fixed;top:-20px;width:9px;height:13px;z-index:30;pointer-events:none;animation:fall 1.7s linear forwards}@keyframes fall{to{transform:translateY(110vh) rotate(680deg);opacity:.15}}
+@media(max-width:850px){.subjects{grid-template-columns:repeat(2,minmax(0,1fr))}.columns{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:540px){header{align-items:flex-start;flex-direction:column}nav{width:100%}nav a{flex:1;text-align:center}.hero:after{right:3%;top:6%;opacity:.45}.hero{padding-top:32px}.subjects{grid-template-columns:1fr}.subject{min-height:auto}.answers{grid-template-columns:1fr}.section-head{align-items:flex-start;flex-direction:column}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><div class="brand-icon">✦</div><span>AULA ARCOÍRIS <span style="color:var(--cyan)">COSMOS</span></span></div>
+  <nav aria-label="Navegación"><a href="#materias">Materias</a><a href="#reto">Reto</a><a href="#medallas">Medallas</a><a href="#ranking">Ranking</a></nav>
+  <button class="sound-toggle" id="soundToggle" onclick="toggleSound()" aria-pressed="false">🔊 Sonido: apagado</button>
+</header>
+<main>
+  <section class="hero">
+    <span class="kicker">✦ Academia galáctica · Modo explorador</span>
+    <h1>Tu próxima misión es <span class="chromatic">aprender el universo.</span></h1>
+    <p>Despega hacia nuevas ideas, resuelve desafíos de todas las materias y consigue XP, niveles y medallas. ¡Cada respuesta es un nuevo descubrimiento!</p>
+    <div class="actions"><a class="btn primary" href="#reto">🚀 Iniciar misión</a><a class="btn secondary" href="#materias">Explorar galaxias ↗</a></div>
+    <div class="stats">
+      <div class="stat"><small>EXPERIENCIA TOTAL</small><strong id="xpStat">0 XP</strong></div>
+      <div class="stat"><small>RESPUESTAS CORRECTAS</small><strong id="correctStat">0</strong></div>
+      <div class="stat"><small>RACHA ACTUAL</small><strong id="streakStat">0 🔥</strong></div>
+      <div class="stat"><small>MEDALLAS</small><strong id="medalStat">0 🏅</strong></div>
+    </div>
+  </section>
+
+  <section id="materias">
+    <div class="section-head"><div><h2>Elige tu galaxia de conocimiento</h2><p>Selecciona una materia para iniciar una misión temática.</p></div></div>
+    <div class="subjects">
+      <article class="subject" style="--glow:#58f5ff"><div class="emoji">🔢</div><h3>Matemáticas</h3><p>Descifra números, patrones y acertijos lógicos.</p><button onclick="startQuiz('math')">Entrar en la misión →</button></article>
+      <article class="subject" style="--glow:#a7ffb5"><div class="emoji">🧪</div><h3>Ciencia</h3><p>Investiga la vida, la energía y el espacio.</p><button onclick="startQuiz('science')">Entrar en la misión →</button></article>
+      <article class="subject" style="--glow:#ff63d8"><div class="emoji">📚</div><h3>Lengua</h3><p>Explora palabras, gramática y comprensión.</p><button onclick="startQuiz('language')">Entrar en la misión →</button></article>
+      <article class="subject" style="--glow:#ffd66b"><div class="emoji">🌍</div><h3>Historia y mundo</h3><p>Viaja por el planeta y conoce el pasado.</p><button onclick="startQuiz('world')">Entrar en la misión →</button></article>
+    </div>
+  </section>
+
+  <section id="reto" class="columns">
+    <div class="panel">
+      <h2>🎯 Centro de misiones</h2><p class="sub">Responde antes de que el tiempo llegue a cero. Cada acierto vale 10 XP y suma progreso hacia tu próximo nivel.</p>
+      <div class="quiz-top"><span class="pill" id="topic">🌌 Misión aleatoria</span><span id="questionCount">Pregunta 1 de 5</span></div>
+      <div class="progress"><span id="quizProgress"></span></div>
+      <div class="quiz-controls"><div class="timer" id="timer">⏱️ <span id="timeText">20 s</span></div><button class="btn secondary" onclick="resetTimer()">↻ Reiniciar tiempo</button></div>
+      <div id="question" aria-live="polite">Preparando la misión...</div>
+      <div class="answers" id="answers"></div>
+      <div id="feedback" aria-live="polite">¡Elige una respuesta para activar los motores!</div>
+      <div class="quiz-controls"><span class="pill" id="sessionScore">Esta misión: 0 XP</span><button class="btn primary" id="nextBtn" onclick="nextQuestion()" disabled>Siguiente →</button></div>
+    </div>
+    <aside class="side-stack">
+      <div class="panel">
+        <h2>🧑‍🚀 Tu explorador</h2><p class="sub">Tu experiencia desbloquea nuevos rangos.</p>
+        <div class="level-wrap"><div class="level-orb" id="levelIcon">🛰️</div><div class="level-info"><strong id="levelName">Cadete espacial · Nivel 1</strong><p><span id="levelXP">0 / 100 XP</span> para el siguiente nivel</p><div class="xp-track"><span id="levelBar"></span></div></div></div>
+      </div>
+      <div class="panel" id="medallas">
+        <h2>🏅 Colección de medallas</h2><p class="sub">Desbloquéalas mientras avanzas.</p>
+        <div class="badges" id="badgeGrid">
+          <div class="badge-item" id="badge-first"><span>🌟</span><small>Primer acierto</small></div>
+          <div class="badge-item" id="badge-five"><span>🚀</span><small>5 aciertos</small></div>
+          <div class="badge-item" id="badge-streak"><span>🔥</span><small>Racha de 3</small></div>
+          <div class="badge-item" id="badge-xp"><span>💎</span><small>100 XP</small></div>
+          <div class="badge-item" id="badge-world"><span>🌍</span><small>Gran viajero</small></div>
+          <div class="badge-item" id="badge-perfect"><span>👑</span><small>Misión perfecta</small></div>
+        </div>
+      </div>
+      <div class="panel" id="ranking">
+        <h2>🏆 Tabla de clasificación</h2><p class="sub">Puntuaciones de esta sesión en este dispositivo.</p>
+        <div class="leaderboard" id="leaderboard"></div>
+        <p style="font-size:.78rem;color:var(--muted);margin:13px 0 0">Los exploradores de ejemplo son ficticios. Tu puntuación se actualiza al jugar.</p>
+      </div>
+    </aside>
+  </section>
+</main>
+<footer>✦ Aula Arcoíris Cosmos · Curiosidad ilimitada, universo por descubrir ✦</footer>
+<div id="toast" role="status"></div>
+<script>
+const bank={
+ math:[
+  {q:"¿Cuánto es 8 × 7?",a:["54","56","64"],c:1,why:"8 × 7 = 56. ¡Las tablas son superpoderes!"},
+  {q:"¿Cuál es un número primo?",a:["21","29","33"],c:1,why:"29 solo se divide exactamente entre 1 y 29."},
+  {q:"Si tienes 24 estrellas y repartes 6 por equipo, ¿cuántos equipos formas?",a:["4","3","6"],c:0,why:"24 ÷ 6 = 4 equipos."},
+  {q:"¿Cuántos lados tiene un octágono?",a:["6","7","8"],c:2,why:"Un octágono tiene ocho lados."},
+  {q:"¿Qué número sigue? 3, 6, 12, 24, …",a:["36","48","30"],c:1,why:"Cada número se multiplica por 2: el siguiente es 48."},
+  {q:"¿Cuánto es 15 + 27?",a:["42","41","43"],c:0,why:"15 + 27 = 42."}
+ ],
+ science:[
+  {q:"¿Qué estrella está más cerca de la Tierra?",a:["El Sol","Sirio","La Estrella Polar"],c:0,why:"El Sol es nuestra estrella más cercana."},
+  {q:"¿Qué necesitan las plantas para hacer la fotosíntesis?",a:["Solo arena","Luz, agua y dióxido de carbono","Solo viento"],c:1,why:"Usan luz, agua y dióxido de carbono para fabricar azúcares."},
+  {q:"¿En qué planeta vivimos?",a:["Marte","Venus","La Tierra"],c:2,why:"La Tierra es nuestro hogar en el sistema solar."},
+  {q:"¿Cuál de estos animales es un mamífero?",a:["Delfín","Tortuga","Trucha"],c:0,why:"Los delfines respiran aire y alimentan a sus crías con leche."},
+  {q:"¿Cuál es el estado del agua en forma de hielo?",a:["Líquido","Sólido","Gaseoso"],c:1,why:"El hielo es agua en estado sólido."},
+  {q:"¿Qué órgano bombea la sangre?",a:["Pulmón","Cerebro","Corazón"],c:2,why:"El corazón impulsa la sangre por el cuerpo."}
+ ],
+ language:[
+  {q:"¿Cuál es un sinónimo de «feliz»?",a:["Alegre","Lejano","Silencioso"],c:0,why:"«Alegre» y «feliz» tienen significados parecidos."},
+  {q:"¿Cuál palabra está escrita correctamente?",a:["Huviera","Hubiera","Ubiera"],c:1,why:"La forma correcta es «hubiera», con h y b."},
+  {q:"¿Cuál es el plural de «lápiz»?",a:["Lápizes","Lápicess","Lápices"],c:2,why:"El plural de lápiz es lápices."},
+  {q:"¿Qué signos enmarcan una pregunta en español?",a:["¿ ?","¡ !","( )"],c:0,why:"En español usamos signo de apertura y de cierre: ¿ ?"},
+  {q:"¿Cuál de estas palabras es un verbo?",a:["Azul","Correr","Ventana"],c:1,why:"«Correr» expresa una acción."},
+  {q:"¿Cuál es el antónimo de «oscuro»?",a:["Brillante","Pequeño","Rápido"],c:0,why:"«Brillante» puede expresar lo contrario de oscuro."}
+ ],
+ world:[
+  {q:"¿En qué continente está Panamá?",a:["Europa","América","Oceanía"],c:1,why:"Panamá está en América Central, que forma parte de América."},
+  {q:"¿Cuál es el océano más grande?",a:["Pacífico","Índico","Ártico"],c:0,why:"El océano Pacífico es el más extenso del planeta."},
+  {q:"¿Qué instrumento sirve para orientarse con el norte?",a:["Termómetro","Brújula","Microscopio"],c:1,why:"La brújula indica direcciones y ayuda a orientarse."},
+  {q:"¿Qué planeta es conocido como el planeta rojo?",a:["Júpiter","Saturno","Marte"],c:2,why:"El óxido de hierro de su superficie le da ese aspecto rojizo."},
+  {q:"¿Qué línea imaginaria divide la Tierra en hemisferio norte y sur?",a:["Ecuador","Meridiano de Greenwich","Trópico de Cáncer"],c:0,why:"El ecuador divide la Tierra en hemisferios norte y sur."},
+  {q:"¿Qué usamos para representar lugares a escala?",a:["Mapa","Novela","Calendario"],c:0,why:"Un mapa representa un lugar o territorio."}
+ ]
+};
+const topicNames={math:"🔢 Matemáticas",science:"🧪 Ciencia",language:"📚 Lengua",world:"🌍 Historia y mundo",all:"🌌 Misión multigaláctica"};
+const badgeIds=["first","five","streak","xp","world","perfect"];
+let questions=[],index=0,answered=false,sessionXP=0,sessionCorrect=0,totalXP=0,totalCorrect=0,streak=0,bestStreak=0,worldDone=false,perfectEligible=true,missionActive=false,seconds=20,timerId=null,soundOn=false,audioCtx=null,unlocked=new Set(),leaderScores={Cadete:0};
+const $=id=>document.getElementById(id);
+function playTone(freq=660,duration=.12,type="sine"){if(!soundOn)return;try{audioCtx=audioCtx||new(window.AudioContext||window.webkitAudioContext)();const osc=audioCtx.createOscillator(),gain=audioCtx.createGain();osc.type=type;osc.frequency.value=freq;gain.gain.setValueAtTime(.08,audioCtx.currentTime);gain.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+duration);osc.connect(gain);gain.connect(audioCtx.destination);osc.start();osc.stop(audioCtx.currentTime+duration)}catch(e){}}
+function toggleSound(){soundOn=!soundOn;$("soundToggle").textContent=soundOn?"🔊 Sonido: encendido":"🔇 Sonido: apagado";$("soundToggle").setAttribute("aria-pressed",String(soundOn));if(soundOn){playTone(660,.1);setTimeout(()=>playTone(880,.12),100);toast("Sonidos activados 🎵")}else toast("Sonidos apagados")}
+function toast(msg){const el=$("toast");el.textContent=msg;el.classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove("show"),2300)}
+function shuffle(arr){return [...arr].sort(()=>Math.random()-.5)}
+function startQuiz(topic="all"){
+ stopTimer();let source=topic==="all"?Object.entries(bank).flatMap(([k,arr])=>arr.map(q=>({...q,topic:k}))):bank[topic].map(q=>({...q,topic}));
+ questions=shuffle(source).slice(0,5);index=0;sessionXP=0;sessionCorrect=0;perfectEligible=true;missionActive=true;renderQuestion();$("reto").scrollIntoView({behavior:"smooth",block:"start"});playTone(520,.1);
+}
+function renderQuestion(){
+ const item=questions[index];answered=false;seconds=20;
+ $("topic").textContent=topicNames[item.topic]||topicNames.all;$("questionCount").textContent=`Pregunta ${index+1} de ${questions.length}`;
+ $("quizProgress").style.width=(index/questions.length*100)+"%";$("question").textContent=item.q;
+ const area=$("answers");area.innerHTML="";
+ item.a.forEach((answer,i)=>{const b=document.createElement("button");b.className="answer";b.textContent=String.fromCharCode(65+i)+". "+answer;b.onclick=()=>chooseAnswer(i);area.appendChild(b)});
+ $("feedback").textContent="Elige tu respuesta antes de que se agote el tiempo."; $("nextBtn").disabled=true;$("nextBtn").textContent=index===questions.length-1?"Finalizar misión 🏁":"Siguiente →";
+ $("sessionScore").textContent=`Esta misión: ${sessionXP} XP`;updateTimerDisplay();startTimer();
+}
+function startTimer(){stopTimer();timerId=setInterval(()=>{if(!missionActive||answered){stopTimer();return}seconds--;updateTimerDisplay();if(seconds<=0){stopTimer();timeOut()}},1000)}
+function stopTimer(){if(timerId){clearInterval(timerId);timerId=null}}
+function resetTimer(){if(answered||!missionActive)return;seconds=20;updateTimerDisplay();startTimer();toast("Temporizador reiniciado ⏱️")}
+function updateTimerDisplay(){$("timeText").textContent=seconds+" s";$("timer").classList.toggle("warning",seconds<=5)}
+function timeOut(){if(answered)return;answered=true;perfectEligible=false;streak=0;const item=questions[index];[...document.querySelectorAll(".answer")].forEach((b,i)=>{b.disabled=true;if(i===item.c)b.classList.add("correct")});$("feedback").textContent="⏰ ¡Se acabó el tiempo! "+item.why;$("nextBtn").disabled=false;updateStats();playTone(180,.22,"triangle")}
+function chooseAnswer(choice){if(answered)return;answered=true;stopTimer();const item=questions[index],buttons=[...document.querySelectorAll(".answer")];buttons.forEach((b,i)=>{b.disabled=true;if(i===item.c)b.classList.add("correct");else if(i===choice)b.classList.add("wrong")});
+if(choice===item.c){totalXP+=10;sessionXP+=10;totalCorrect++;sessionCorrect++;streak++;bestStreak=Math.max(bestStreak,streak);$("feedback").textContent="¡Respuesta correcta! ✨ "+item.why;confetti();playTone(740,.1);setTimeout(()=>playTone(990,.16),100);if(item.topic==="world")worldDone=true}else{perfectEligible=false;streak=0;$("feedback").textContent="¡Buen intento, explorador! 💫 "+item.why;playTone(240,.16,"triangle")}
+leaderScores.Cadete=totalXP;updateStats();checkBadges();$("nextBtn").disabled=false;$("sessionScore").textContent=`Esta misión: ${sessionXP} XP`;
+}
+function nextQuestion(){if(!missionActive)return;if(!answered)return; if(index<questions.length-1){index++;renderQuestion();return}finishMission()}
+function finishMission(){stopTimer();missionActive=false;$("quizProgress").style.width="100%";$("question").textContent="¡Misión completada! 🏆";$("answers").innerHTML="";$("feedback").textContent=`Has conseguido ${sessionXP} XP y ${sessionCorrect} acierto(s) en esta misión. ¡La galaxia te espera para otra aventura!`;$("nextBtn").textContent="Jugar otra misión ↻";$("nextBtn").disabled=false;$("nextBtn").onclick=()=>{$("nextBtn").onclick=nextQuestion;startQuiz("all")};if(perfectEligible&&sessionCorrect===questions.length){unlock("perfect");toast("¡Medalla de misión perfecta! 👑")}updateStats();renderLeaderboard();playTone(660,.12);setTimeout(()=>playTone(880,.12),140);setTimeout(()=>playTone(1100,.2),280)}
+function updateStats(){ $("xpStat").textContent=totalXP+" XP";$("correctStat").textContent=totalCorrect;$("streakStat").textContent=streak+" 🔥";const count=unlocked.size;$("medalStat").textContent=count+" 🏅";const level=Math.floor(totalXP/100)+1,into=totalXP%100;$("levelName").textContent=level>=5?`Comandante cósmico · Nivel ${level}`:level>=3?`Piloto estelar · Nivel ${level}`:`Cadete espacial · Nivel ${level}`;$("levelIcon").textContent=level>=5?"👩‍🚀":level>=3?"🛸":"🛰️";$("levelXP").textContent=`${into} / 100 XP`;$("levelBar").style.width=into+"%";renderLeaderboard()}
+function unlock(id){if(unlocked.has(id))return;unlocked.add(id);const el=$("badge-"+id);if(el)el.classList.add("unlocked");$("medalStat").textContent=unlocked.size+" 🏅";const names={first:"Primer acierto 🌟",five:"Cinco aciertos 🚀",streak:"Racha de 3 🔥",xp:"100 XP 💎",world:"Gran viajero 🌍",perfect:"Misión perfecta 👑"};toast("¡Medalla desbloqueada: "+names[id]+"!");playTone(900,.2)}
+function checkBadges(){if(totalCorrect>=1)unlock("first");if(totalCorrect>=5)unlock("five");if(bestStreak>=3)unlock("streak");if(totalXP>=100)unlock("xp");if(worldDone)unlock("world")}
+function renderLeaderboard(){const defaults=[{name:"Nova",score:80},{name:"Pixel",score:60},{name:"Luna",score:40}];const rows=[...defaults,{name:"Tú",score:totalXP,you:true}].sort((a,b)=>b.score-a.score);$("leaderboard").innerHTML="";rows.forEach((r,i)=>{const row=document.createElement("div");row.className="leader-row";const rank=document.createElement("span");rank.className="rank";rank.textContent=["🥇","🥈","🥉","✦"][Math.min(i,3)];const name=document.createElement("span");name.className="leader-name";name.textContent=r.name;if(r.you){const tag=document.createElement("small");tag.className="you-label";tag.textContent="TÚ";name.appendChild(tag)}const score=document.createElement("span");score.className="leader-points";score.textContent=r.score+" XP";row.append(rank,name,score);$("leaderboard").appendChild(row)})}
+function confetti(){for(let i=0;i<24;i++){const el=document.createElement("i");el.className="confetti";el.style.left=Math.random()*100+"vw";el.style.background=["#58f5ff","#ffd66b","#a68bff","#ff63d8","#a7ffb5"][i%5];el.style.animationDelay=Math.random()*.25+"s";document.body.appendChild(el);setTimeout(()=>el.remove(),2000)}}
+renderLeaderboard();startQuiz("all");
+</script>
+</body>
+</html>
